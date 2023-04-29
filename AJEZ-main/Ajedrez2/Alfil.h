@@ -12,5 +12,5 @@ public:
 
 	}
 	void dibujar(int); //Derivada de func virtual en Pieza
-	virtual bool movimiento(Vector2D pos_ini, Vector2D pos_fin);
+	virtual bool movimiento(Vector2D pos_ini, Vector2D pos_fin, int blancas, int negras);
 };

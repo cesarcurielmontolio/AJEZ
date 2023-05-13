@@ -22,9 +22,9 @@ public:
 	Pieza(tipo t, color c, Vector2D p) : colour(c), type(t), posicion(0,0) {}
 	Pieza() { colour = NO_DEFINIDO; type = VACIA;}
 
-	//Funciones virtuales que se definen en las clases derivadas (Peón, rey, etc)
-	virtual void dibujar(int) = 0;
-	virtual bool movimiento(Vector2D pos_ini, Vector2D pos_fin) = 0; //Función bool para que realice mov adecuado para cada pieza
+	//Funciones virtuales que se definen en las clases derivadas (PeÃ³n, rey, etc)
+	virtual void dibuja(Vector2D p) = 0;
+	virtual bool movimiento(Vector2D pos_ini, Vector2D pos_fin) = 0; //FunciÃ³n bool para que realice mov adecuado para cada pieza
 
 };
 

@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <cstring>
 #include"Vector2D.h"
+#include"ETSIDI.h"
 
 using namespace std;
 

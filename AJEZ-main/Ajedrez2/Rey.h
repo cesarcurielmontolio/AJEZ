@@ -11,6 +11,6 @@ public:
 		posicion = p;
 
 	}
-	void dibujar(int); //Derivada de func virtual en Pieza
+	virtual void dibuja(Vector2D p) = 0;
 	virtual bool movimiento(Vector2D pos_ini, Vector2D pos_fin);
 };

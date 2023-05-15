@@ -1,5 +1,5 @@
 #include"Reina.h"
-void Reina::dibujar(int) {
+void Reina::dibujar() {
 
 }
 bool Reina::movimiento(Vector2D pos_ini, Vector2D pos_fin) {
@@ -20,4 +20,9 @@ bool Reina::movimiento(Vector2D pos_ini, Vector2D pos_fin) {
 	else {
 		return false;
 	}
+}
+
+Movimiento Reina::getMov(Vector2D pos_ini, Vector2D pos_fin) {
+
+
 }

@@ -1,10 +1,10 @@
 #include"Torre.h"
-void Torre::dibujar(int) {
+void Torre::dibujar() {
 
 }
-bool Torre::movimiento(Vector2D pos_ini, Vector2D pos_fin, int blancas, int negras) {
+bool Torre::movimiento(Vector2D pos_ini, Vector2D pos_fin) {
 
-	//Movimientos verticales (eje y, no cambia posiciÃ³n en x)
+	//Movimientos verticales (eje y, no cambia posición en x)
 	if ((pos_fin.x == pos_ini.x) && (pos_fin.y != pos_ini.y)) { //Movimiento ascendente o descendente
 		return true;
 	}
@@ -16,4 +16,10 @@ bool Torre::movimiento(Vector2D pos_ini, Vector2D pos_fin, int blancas, int negr
 	else {
 		return false;
 	}
+
+}
+
+Movimiento Torre::getMov(Vector2D pos_ini, Vector2D pos_fin) {
+
+
 }

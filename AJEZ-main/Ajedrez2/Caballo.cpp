@@ -1,5 +1,5 @@
 #include"Caballo.h"
-void Caballo::dibujar(int) {
+void Caballo::dibujar() {
 
 }
 bool Caballo::movimiento(Vector2D pos_ini, Vector2D pos_fin) {
@@ -19,4 +19,9 @@ bool Caballo::movimiento(Vector2D pos_ini, Vector2D pos_fin) {
 	else {
 		return true;
 	}
+}
+
+Movimiento Caballo::getMov(Vector2D pos_ini, Vector2D pos_fin) {
+
+
 }

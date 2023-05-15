@@ -25,7 +25,7 @@ public:
 		colour = NO_DEFINIDO; 
 		type = VACIA;
 		posicion.x = 0;
-		posicion.y = 0
+		posicion.y = 0;
 	}
 
 	//Funciones para obtener la posicion de nuestras piezas

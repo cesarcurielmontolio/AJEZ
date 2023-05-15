@@ -8,7 +8,7 @@ Mundo::~Mundo() {
 }
 
 void Mundo::Dibuja() {
-	
+	b.draw(); 
 }
 
 void Mundo::Inicializa() { //Se da valor a las coordenadas para definir la perspectiva

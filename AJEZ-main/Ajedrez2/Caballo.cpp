@@ -2,7 +2,7 @@
 void Caballo::dibujar() {
 
 }
-bool Caballo::movimiento(Vector2D pos_ini, Vector2D pos_fin) {
+bool Caballo::movimiento(Vector2D pos_ini, Vector2D pos_fin, color c_destino) {
 
 	//Cuando se desplaza el caballo una posición (en cualquier sentido) en la dirección horizontal (eje x), se tiene que desplazar 2 casillas en el eje y
 	if ((abs(pos_fin.x - pos_ini.x) == 1) && (abs(pos_fin.y - pos_ini.y) != 2)) {
@@ -22,6 +22,8 @@ bool Caballo::movimiento(Vector2D pos_ini, Vector2D pos_fin) {
 }
 
 Movimiento Caballo::getMov(Vector2D pos_ini, Vector2D pos_fin) {
+	Movimiento mov;
 
-
+	return mov; //Devuelve el movimiento seleccionado, solo si cumple las 
+	            //condiciones que se especifican en la función bool anterior
 }

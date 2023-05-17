@@ -1,10 +1,10 @@
 #include "board.h"
 #include "freeglut.h"
 
-board::board() { //Constructor clase board. Se construye con las casillas vacías
+board::board() { //Constructor clase board. Se construye con las casillas vacÃ­as
 	
 	for (int i = 0; i < LADO; i++) {
-		for (int j = 0; j < LADO; j++) {  //Se crea el tablero vacío sin piezas
+		for (int j = 0; j < LADO; j++) {  //Se crea el tablero vacÃ­o sin piezas
 			c[i][j].setPieza(new NoPieza(color::NO_DEFINIDO, tipo::VACIA, Vector2D(i, j)));
 		}
 	}
@@ -18,7 +18,7 @@ void board::init() { //Se inicializan las piezas en el tablero. He puesto los do
 			c[i][j].setPieza(new NoPieza(color::NO_DEFINIDO, tipo::VACIA, Vector2D(i, j)));
 		}
 	}
-	//Inicialización piezas blancas
+	//InicializaciÃ³n piezas blancas
 	//Torres
 	c[0][0].setPieza(new Torre(color::BLANCA, tipo::TORRE, Vector2D(0, 0))); //Origen del tablero. La matriz crece en el sentido positivos de x e y.
 	//c[0][0].setPieza(new TorreBlanca());
@@ -45,7 +45,7 @@ void board::init() { //Se inicializan las piezas en el tablero. He puesto los do
 
 
 
-	//Inicialización piezas negras
+	//InicializaciÃ³n piezas negras
 	//Torres
 	c[0][7].setPieza(new Torre(color::NEGRA, tipo::TORRE, Vector2D(0, 7)));
 	//c[0][7].setPieza(new TorreNegra());
@@ -71,7 +71,7 @@ void board::init() { //Se inicializan las piezas en el tablero. He puesto los do
 	//c[3][7].setPieza(new ReinaNegra());
 	
 
-	//Inicialización peones
+	//InicializaciÃ³n peones
 	//Blancos
 	for (int i = 0; i < LADO; i++) {
 		int j = 1;  //Segunda fila de nuestra matriz tablero
@@ -89,7 +89,24 @@ void board::init() { //Se inicializan las piezas en el tablero. He puesto los do
 
 void board::draw_board() {
 
-	//borde (realmente es un cuadrado que está detras de las casillas)
+	
+	//dibujo del fondo tablero de ajedrez aÃ±adir imagen tablero al fichero 
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/tablero.4.png").id);
+	glDisable(GL_LIGHTING);
+	glBegin(GL_POLYGON);
+	glColor3f(1, 1, 1);
+	glTexCoord2d(0, 1); glVertex3f(0, 48, 0);
+	glTexCoord2d(1, 1); glVertex3f(48, 48, 0);
+	glTexCoord2d(1, 0); glVertex3f(48, 0, 0);
+	glTexCoord2d(0, 0); glVertex3f(0, 0, 0);
+	glEnd();
+	glEnable(GL_LIGHTING);
+	glDisable(GL_TEXTURE_2D);
+	
+	
+	
+	//borde (realmente es un cuadrado que estÃ¡ detras de las casillas)
 	/*glColor3ub(100, 25, 25); //color del borde
 	glBegin(GL_POLYGON);
 	glVertex3f((0.0f - 4) * sqsize - bdsize, (0.0f - 4) * sqsize - bdsize, -0.1f);

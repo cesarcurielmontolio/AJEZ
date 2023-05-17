@@ -1,7 +1,4 @@
 #include"NoPieza.h"
-NoPieza::NoPieza() {
-
-}
 
 void NoPieza::dibujar() {
 

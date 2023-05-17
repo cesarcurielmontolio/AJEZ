@@ -4,17 +4,20 @@
 #include "board.h"
 #include"Vector2D.h"
 
-class Mundo
-{
+class Mundo {
 public:
+	enum Nivel {INICIO, PAUSA, JUEGO, SALIR};
+
 	Mundo();
-	virtual ~Mundo();
+	virtual ~Mundo() {}
 	void Tecla(unsigned char key);
 	void Inicializa();
 	void Dibuja();
 	void Mueve();
-	bool cargarNivel();
 	board b;
+	Vector2D vec;
+	Nivel n;
+
 private:
 	
 	float x_ojo;

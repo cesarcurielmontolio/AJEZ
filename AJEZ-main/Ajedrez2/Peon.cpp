@@ -9,14 +9,14 @@ bool Peon::movimiento(Vector2D pos_ini, Vector2D pos_fin, color c_destino) {
 			if ((pos_fin.x - pos_ini.x) == 0 && (pos_fin.y - pos_ini.y) == 1) { //Movimiento para avanzar normal hacia delante
 				return true;
 			}
-			else if (pos_ini.y == 1) { //Movimiento inicial (opci髇 de mover 1 o 2 casillas). Peones situados en la segunda casilla del tablero (pos 1)
+			else if (pos_ini.y == 1) { //Movimiento inicial (opci贸n de mover 1 o 2 casillas). Peones situados en la segunda casilla del tablero (pos 1)
 				if ((pos_fin.x - pos_ini.x) == 0 && ((pos_fin.y - pos_ini.y) == 1 || (pos_fin.y - pos_ini.y) == 2)) {
 					return true;
 				}
 			}
 			else return false;
 		}
-		else if (c_destino == color::NEGRA) { //Movimiento para comer una pieza (dcha o izq, utilizando la funci髇 absoluto)
+		else if (c_destino == color::NEGRA) { //Movimiento para comer una pieza (dcha o izq, utilizando la funci贸n absoluto)
 			if ((abs(pos_fin.x - pos_ini.x) == 1) && (pos_fin.y - pos_ini.y) == 1) {
 				return true;
 			}
@@ -30,14 +30,14 @@ bool Peon::movimiento(Vector2D pos_ini, Vector2D pos_fin, color c_destino) {
 			if ((pos_fin.x - pos_ini.x) == 0 && (pos_fin.y - pos_ini.y) == 1) { //Movimiento para avanzar normal hacia delante
 				return true;
 			}
-			else if (pos_ini.y == 1) { //Movimiento inicial (opci髇 de mover 1 o 2 casillas). Peones situados en la segunda casilla del tablero (pos 1)
+			else if (pos_ini.y == 1) { //Movimiento inicial (opci贸n de mover 1 o 2 casillas). Peones situados en la segunda casilla del tablero (pos 1)
 				if ((pos_fin.x - pos_ini.x) == 0 && ((pos_fin.y - pos_ini.y) == 1 || (pos_fin.y - pos_ini.y) == 2)) {
 					return true;
 				}
 			}
 			else return false;
 		}
-		else if (c_destino == color::NEGRA) { //Movimiento para comer una pieza (dcha o izq, utilizando la funci髇 absoluto)
+		else if (c_destino == color::BLANCA) { //Movimiento para comer una pieza (dcha o izq, utilizando la funci贸n absoluto)
 			if ((abs(pos_fin.x - pos_ini.x) == 1) && (pos_fin.y - pos_ini.y) == 1) {
 				return true;
 			}
@@ -52,7 +52,7 @@ Movimiento Peon::getMov(Vector2D pos_ini, Vector2D pos_fin) {
 	
 	Movimiento mov;
 	Vector2D desp(0, 0); //Inicializamos el desplazamiento a 0 en ambos sentidos
-	Vector2D origen = pos_ini; //Guardamos en origen la posici髇 inicial
+	Vector2D origen = pos_ini; //Guardamos en origen la posici贸n inicial
 
 	if (pos_fin.x != pos_ini.x) { //Mov eje x
 		if (pos_fin.x > pos_ini.x) {

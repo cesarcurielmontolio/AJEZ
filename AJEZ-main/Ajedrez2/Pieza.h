@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <cstring>
 #include"Vector2D.h"
-#include"Movimiento.h"
+#include"ETSIDI.h"
 
 using namespace std;
 enum tipo { TORRE, CABALLO, ALFIL, REY, REINA, PEON, VACIA };
@@ -13,30 +13,38 @@ enum color { BLANCA, NEGRA, NO_DEFINIDO };
 
 class Pieza {
 
+	
 protected:
 	tipo type;
 	color colour;
 
 public:
-	
 	Vector2D posicion;
-	Pieza() { 
-		colour = NO_DEFINIDO; 
+	Pieza() {
+		colour = NO_DEFINIDO;
 		type = VACIA;
 		posicion.x = 0;
-		posicion.y = 0
+		posicion.y = 0;
 	}
 
 	//Funciones para obtener la posicion de nuestras piezas
 	Vector2D getPos();
 	int getCoordX();
 	int getCoordY();
-	void setPos(Vector2D);
-	color getCol() const;
+	void setPos(Vector2D v);
+	virtual color getCol() const = 0;
+	virtual char getTipo() = 0;
 
-	//Funciones virtuales que se definen en las clases derivadas (Peón, rey, etc)
-	virtual void dibujar() = 0;
-	virtual bool movimiento(Vector2D pos_ini, Vector2D pos_fin, color c_destino) = 0; //Función bool para que realice mov adecuado para cada pieza
-	virtual Movimiento getMov(Vector2D pos_ini, Vector2D pos_fin) = 0;
+
+	// Funciones virtuales que se realizan en las piezas derivadas
+	virtual void dibujar()=0; //Derivada de func virtual en Pieza
+	virtual void dibujarSW()=0;
+
+
+	virtual bool movimiento(Vector2D pos_ini, Vector2D pos_fin) = 0; // debe ser funcion virtual para que pase a la funcion de cada clase mÃ¡s concreta 
+	virtual bool movimiento2(Vector2D pos_ini, Vector2D pos_fin, color c) = 0;
+
+
 };
+
 

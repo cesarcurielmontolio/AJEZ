@@ -117,7 +117,7 @@ bool Peon::movimiento2(Vector2D pos_ini, Vector2D pos_fin, color c) {
 		else if ((pos_fin.x - pos_ini.x) == 0 && (pos_fin.y - pos_ini.y) == 1) { //Movimiento para avanzar normal hacia delante
 			return true;
 		}
-		else if (c == NEGRA && abs((pos_fin.x - pos_ini.x)) == 1 && (pos_fin.y - pos_ini.y) == 1) {
+		else if (c == NEGRA && abs((pos_fin.x - pos_ini.x)) == 1 && (pos_fin.y - pos_ini.y) == 1) { //Movimiento para comer. Limitado a cuando haya piezas en la clase Interacción
 			return true;
 		}
 		else

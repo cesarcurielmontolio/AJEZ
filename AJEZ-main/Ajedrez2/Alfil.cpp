@@ -1,44 +1,104 @@
-#include"Alfil.h"
-void Alfil::dibujar() {
+#include "Alfil.h"
 
+#include"Alfil.h"
+#include <Mundo.h>
+void Alfil::dibujar() {
+	if (Pieza::colour == 0) {
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Alfilblanco.png").id);
+		glDisable(GL_LIGHTING);
+		
+	}
+	else if (Pieza::colour == 1) {
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/alfilnegro.png").id);
+		glDisable(GL_LIGHTING);
+	
+	}
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glBegin(GL_POLYGON);
+	glColor3f(1, 1, 1);
+	glTexCoord2d(0, 1); glVertex3f(posicion.x, posicion.y + 1, 0.1);
+	glTexCoord2d(1, 1); glVertex3f(posicion.x + 1, posicion.y + 1, 0.1);
+	glTexCoord2d(1, 0); glVertex3f(posicion.x + 1, posicion.y, 0.1);
+	glTexCoord2d(0, 0); glVertex3f(posicion.x, posicion.y, 0.1);
+
+
+
+	glEnd();
+	glDisable(GL_BLEND);
+	glEnable(GL_LIGHTING);
+	glDisable(GL_TEXTURE_2D);
 }
-bool Alfil::movimiento(Vector2D pos_ini, Vector2D pos_fin, color c_destino)) {
-	//Al moverse en diagonal la diferencia absoluta de las coordenadas x e y debe coincidir siempre
+void Alfil::dibujarSW()
+{
+	if (Pieza::colour == 0) {
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenesSW/alfilblanco.png").id);
+		glDisable(GL_LIGHTING);
+
+	}
+	else if (Pieza::colour == 1) {
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenesSW/alfilnegro.png").id);
+		glDisable(GL_LIGHTING);
+
+	}
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glBegin(GL_POLYGON);
+	glColor3f(1, 1, 1);
+	glTexCoord2d(0, 1); glVertex3f(posicion.x, posicion.y + 1, 0.1);
+	glTexCoord2d(1, 1); glVertex3f(posicion.x + 1, posicion.y + 1, 0.1);
+	glTexCoord2d(1, 0); glVertex3f(posicion.x + 1, posicion.y, 0.1);
+	glTexCoord2d(0, 0); glVertex3f(posicion.x, posicion.y, 0.1);
+
+
+
+	glEnd();
+	glDisable(GL_BLEND);
+	glEnable(GL_LIGHTING);
+	glDisable(GL_TEXTURE_2D);
+}
+bool Alfil::movimiento(Vector2D pos_ini, Vector2D pos_fin) {
+	int dif = abs(pos_fin.x - pos_ini.x);
+		//Al moverse en diagonal la diferencia absoluta de las coordenadas x e y debe coincidir siempre
 	if (abs(pos_fin.x - pos_ini.x) == abs(pos_fin.y - pos_ini.y)) {
 		return true;
 	}
+	
 	else {
 		return false;
 	}
 }
-Movimiento Alfil::getMov(Vector2D pos_ini, Vector2D pos_fin) {
-	Movimiento mov;
-	Vector2D desp(0, 0); //Inicializamos el desplazamiento a 0 en ambos sentidos
-	Vector2D origen = pos_ini; //Guardamos en origen la posición inicial
 
-	if (pos_fin.x != pos_ini.x) { //Mov eje x
-		if (pos_fin.x > pos_ini.x) {
-			desp.x = 1; //Desplazamiento positivo en el eje x de la matriz
-		}
-		else {
-			desp.x = -1;
-		}
-	}
-	else if (pos_fin.y != pos_ini.y) { //Mov eje y
-		if (pos_fin.y > pos_ini.y) {
-			desp.y = 1; //Desplazamiento positivo en el eje y de la matriz
-		}
-		else {
-			desp.y = -1;
-		}
+bool Alfil::movimiento2(Vector2D pos_ini, Vector2D pos_fin, color c) {
+	int dif = abs(pos_fin.x - pos_ini.x);
+	//Al moverse en diagonal la diferencia absoluta de las coordenadas x e y debe coincidir siempre
+	if (abs(pos_fin.x - pos_ini.x) == abs(pos_fin.y - pos_ini.y)) {
+		return true;
 	}
 
-	//Se incrementa o decrementa según proceda hasta que llegue a la posición final
-	while (origen != pos_fin) { //Hay que hacer la sobrecarga del operador 
-		origen.x += desp.x;
-		origen.y += desp.y;
-		mov.insertarMov(origen);
+	else {
+		return false;
 	}
-	return mov;
+}
+
+color Alfil::getCol() const{
+	if (colour == color::BLANCA) {
+		return color::BLANCA;
+	}
+	else if (colour == color::NEGRA) {
+		return color::NEGRA;
+	}
+
+}
+char Alfil::getTipo() {
+
+	return 'A';
+
 }
 	

@@ -14,9 +14,11 @@ public:
 		type = t;
 		posicion = p;
 	}
-	virtual ~NoPieza(){}
-	void dibujar();
+	virtual ~NoPieza() {}
+	void dibujar();  //Dibuja la pieza vacía
 	bool movimiento(Vector2D pos_ini, Vector2D pos_fin);
-	Movimiento getMov(Vector2D pos_ini, Vector2D pos_fin);
-
+	bool movimiento2(Vector2D pos_ini, Vector2D pos_fin, color c); //Función de movimiento
+	color getCol() const;
+	char getTipo();
+	
 };

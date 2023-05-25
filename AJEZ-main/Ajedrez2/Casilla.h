@@ -1,20 +1,23 @@
 #pragma once
-#include "Vector2D.h"
+#ifndef __CASILLA_H__
+#define __CASILLA_H__
+#include "vector2D.h"
 #include "Pieza.h"
+#include "Torre.h";
 
-class Casilla {
+class Casilla { 
+	Pieza* p; 
 
-	Pieza* p;
 
-public:
+	public:
+		Casilla(){}
+		virtual ~Casilla() {}
+		void dibujarCasilla();
+		//Obtener pieza que hay en la casilla y colocarla
+		void setPieza(Pieza* p);
 
-	Casilla() {}
-	virtual ~Casilla(){}
-	void dibujar();
-
-	//Obtener pieza que hay en la casilla y colocarla
-	void setPieza(Pieza* p);
-	Pieza* getPieza();
-
+		Pieza* getPieza();
+		Vector2D getCasilla();
 
 };
+#endif 

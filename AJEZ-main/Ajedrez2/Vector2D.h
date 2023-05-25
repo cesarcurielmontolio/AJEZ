@@ -1,19 +1,23 @@
 #pragma once
+#include "freeglut.h"
+#include <math.h>
+
 
 class Vector2D {
-
+	
 public:
-	int x, y;
-	Vector2D(int x, int y);
-	Vector2D() :x(0), y(0){}
+	// argumentos
+	float x;
+	float y;
+	
+	// metodos 
+	Vector2D(float xv = 0.0f, float yv = 0.0f); // (1)constructor
+	float modulo(); // (2) modulo del vector
+	float argumento(); // (3) argumento del vector
+	Vector2D unitario(); // (4) devuelve un vector unitario
+	Vector2D operator - (Vector2D); // (5) resta de vectores
+	Vector2D operator + (Vector2D); // (6) suma de vectores
+	float operator *(Vector2D); // (7) producto escalar
+	Vector2D operator *(float); // (8) producto por un escalar
 
-	Vector2D operator - (Vector2D); // resta de vectores
-	Vector2D operator + (Vector2D); // suma de vectores
-	
-	//Sobrecarga de operadores
-	bool operator==(const Vector2D& v);
-	bool operator!=(const Vector2D& v);
-	bool operator<(const Vector2D& v);
-	bool operator>(const Vector2D& v);
-	
 };

@@ -138,9 +138,9 @@ void CoordinadorAjedrez::dibuja()
 		ETSIDI::printxy("AJEDREZ AJEZ", -7, 8);
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 12);
-		ETSIDI::printxy("PULSE LA TECLA -E- PARA EMPEZAR EL JUEGO CL¡SICO ", -7, 7);
-		ETSIDI::printxy("PULSE LA TECLA -W- PARA EMPEZAR EL JUEGO INTERGAL¡CTICO ", -7, 6);
-		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -7, 5);
+		ETSIDI::printxy("PULSE LA TECLA -E- PARA EMPEZAR EL JUEGO CL√ÅSICO ", -10, 7);
+		ETSIDI::printxy("PULSE LA TECLA -W- PARA EMPEZAR EL JUEGO INTERGAL√ÅCTICO ", -10, 6);
+		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -10, 5);
 		ETSIDI::printxy("CESAR Y DELA", 2, 1);
 	}
 	else if (estado == JUEGO)
@@ -159,9 +159,9 @@ void CoordinadorAjedrez::dibuja()
 		ETSIDI::printxy("PANTALLA DE PAUSA", -7, 8);
 		ETSIDI::setTextColor(56, 200, 111);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 12);
-		ETSIDI::printxy("PULSE LA TECLA -A- PARA SEGUIR", -7, 7);
-		ETSIDI::printxy("PULSE LA TECLA -R- PARA REINICIAR LA PARTIDA", -7, 6);
-		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -7, 5);
+		ETSIDI::printxy("PULSE LA TECLA -A- PARA SEGUIR", -10, 7);
+		ETSIDI::printxy("PULSE LA TECLA -R- PARA REINICIAR LA PARTIDA", -10, 6);
+		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -10, 5);
 		ETSIDI::printxy("CESAR Y DELA", 2, 1);
 	}
 	 if (estado == JUEGO) {

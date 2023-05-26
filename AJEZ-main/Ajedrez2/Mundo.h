@@ -1,8 +1,5 @@
 #pragma once
 #include "Tablero.h"
-
-#include "ListaCaballosN.h"
-#include "CaballoN.h"
 #include "Selector.h"
 #include "Casilla.h"
 #include"Torre.h"
@@ -12,22 +9,17 @@
 class Mundo
 {
 private:
-	// variables de la posicion de la cámara
+	// variables de la posicion de la cÃ¡mara
 	float x_ojo;
 	float y_ojo;
 	float z_ojo;
-	// variables a utilizar para el uso del ratón
+	// variables a utilizar para el uso del ratÃ³n
 	float mousex, mousey;
 	
 	friend class Tablero;
 	friend class Casilla;
 
-	//ListaPeonesB peonesB;
-	ListaCaballosN caballosN;
-
 	Tablero tablero;
-	//PeonB peonB;
-	// CaballoN caballoN;
 	Selector selector;
 	Casilla c;
 protected:
@@ -67,10 +59,10 @@ public:
 
 	//boolclicCorrecto()
 
-	// USO DEL RATÓN EN LA PANTALLA 
+	// USO DEL RATÃ“N EN LA PANTALLA 
 
 	void mouseFunc(int button, int state, int x, int y);
-	Vector2D getMouseCas(int x, int y); // Averiguar que casilla se selecciona con el raton sea cual sea el tamaño de la pantalla
+	Vector2D getMouseCas(int x, int y); // Averiguar que casilla se selecciona con el raton sea cual sea el tamaÃ±o de la pantalla
 	void motionFunc(int x, int y);
 
 

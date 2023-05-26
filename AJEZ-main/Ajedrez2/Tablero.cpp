@@ -10,10 +10,10 @@ bool okMOV= false;
 #define LADO 8 
 using namespace std;
 
-Tablero::Tablero() : inicializado(false) //Constructor clase board. Se construye con las casillas vacías 
+Tablero::Tablero() : inicializado(false) //Constructor clase board. Se construye con las casillas vacÃ­as 
 {
 	for (int i = 0; i < LADO; i++) {
-		for (int j = 0; j < LADO; j++) {  //Se crea el tablero vacío sin piezas
+		for (int j = 0; j < LADO; j++) {  //Se crea el tablero vacÃ­o sin piezas
 			c[i][j].setPieza(new NoPieza(NO_DEFINIDO, VACIA, Vector2D(i,j)));
 		}
 	}
@@ -89,7 +89,7 @@ void Tablero::init()
 	c[3][7].setPieza(new Reina(color::NEGRA, tipo::REINA, Vector2D(3, 7)));
 	//c[3][7].setPieza(new ReinaNegra());
 
-	//Inicialización peones
+	//InicializaciÃ³n peones
 	//Blancos
 	for (int i = 0; i < LADO; i++) {
 		int j = 1;  //Segunda fila de nuestra matriz tablero
@@ -141,7 +141,7 @@ void Tablero::dibuja()
 		glVertex3f(0.0, 8.0f, -0.1f);
 		glEnd();
 	
-		// prueba del tamaño de las casillas 
+		// prueba del tamaÃ±o de las casillas 
 		// cada casilla dibujo 
 	glColor3ub(137, 107, 73);
 		glBegin(GL_QUADS);
@@ -205,7 +205,7 @@ void Tablero::dibujaSW()
 	glVertex3f(0.0, 8.0f, -0.1f);
 	glEnd();
 
-	// prueba del tamaño de las casillas 
+	// prueba del tamaÃ±o de las casillas 
 	// cada casilla dibujo 
 	glColor3ub(137, 107, 73);
 	glBegin(GL_QUADS);
@@ -250,7 +250,7 @@ void Tablero::dibujaSW()
 
 bool Tablero::maniobraValidada(char pieza, Vector2D pos_ini, Vector2D pos_fin)
 {
-	// Aquí implementa la lógica para verificar si la pieza puede atacar la posición objetivo
+	// AquÃ­ implementa la lÃ³gica para verificar si la pieza puede atacar la posiciÃ³n objetivo
 	int filaDif = abs(pos_fin.x - pos_ini.x);
 	int colDif = abs(pos_fin.y - pos_ini.y);
 	switch (pieza) {
@@ -274,9 +274,9 @@ bool Tablero::maniobraValidada(char pieza, Vector2D pos_ini, Vector2D pos_fin)
 		// El caballo puede atacar en forma de L en todas las direcciones posibles
 		return (filaDif == 2 && colDif == 1) || (filaDif == 1 && colDif == 2);
 
-	case 'P': // Peón (solo verificando ataque diagonal hacia arriba)
+	case 'P': // PeÃ³n (solo verificando ataque diagonal hacia arriba)
 
-		// El peón puede atacar en diagonal hacia arriba
+		// El peÃ³n puede atacar en diagonal hacia arriba
 		return (pos_ini.y - pos_fin.y == 1 || pos_ini.y - pos_fin.y == -1) &&
 			(pieza == 'P' && pos_ini.x - pos_fin.x == 1) ||
 			(pieza == 'p' && pos_ini.x - pos_fin.x == -1);
@@ -298,7 +298,7 @@ bool Tablero::maniobraValidada(char pieza, Vector2D pos_ini, Vector2D pos_fin)
 
 				// Verificar si la pieza enemiga puede atacar al rey
 				if (maniobravalida(BLANCA, posPieza, posRey)) {
-					return true; // El rey está en jaque
+					return true; // El rey estÃ¡ en jaque
 				}
 			}
 		}
@@ -310,13 +310,13 @@ bool Tablero::maniobraValidada(char pieza, Vector2D pos_ini, Vector2D pos_fin)
 
 				// Verificar si la pieza enemiga puede atacar al rey
 				if (maniobravalida(NEGRA, posPieza, posRey)) {
-					return true; // El rey está en jaque
+					return true; // El rey estÃ¡ en jaque
 				}
 			}
 		}
 	}
 
-	return false; // El rey no está en jaque
+	return false; // El rey no estÃ¡ en jaque
 }*/
 
 
@@ -335,7 +335,7 @@ void Tablero::muevePieza(Vector2D pos_ini, Vector2D pos_fin, color col) // Funci
 			if (i == pos_ini.x && j == pos_ini.y) {
 				if (c[i][j].getPieza()->movimiento2(pos_ini, pos_fin, c[(int)pos_fin.x][(int)pos_fin.y].getPieza()->getCol())  /*&& okTurno(col, pos_ini) == true*/ ) {//... FUNCION PARA HACER EL MOVIMIENTO DE LA PIEZA DESPUES DE COMPROBAR QUE SE PUEDE REALIZAR. 
 					std::cout << "MOVIMIENTO POSIBLE" << endl;
-					std::cout << "hoooolaaaa" << endl;
+					
 					okMOV = true;
 					//c[i][j].getPieza()->setPos(pos_fin);
 
@@ -352,23 +352,42 @@ void Tablero::muevePieza(Vector2D pos_ini, Vector2D pos_fin, color col) // Funci
 							}
 						}
 						else if (c[i][j].getPieza()->getTipo() == 'C') {
+							if (c[(int)pos_fin.x][(int)pos_fin.y].getPieza()->getCol() == color::BLANCA) {
+								std::cout << "MOVIMIENTO NO POSIBLE, VUELVA A SELECCIONAR EL MOVIMIENTO" << endl;
+							}
+							else
 							c[(int)pos_fin.x][(int)pos_fin.y].setPieza(new Caballo(color::BLANCA, tipo::CABALLO, pos_fin));
 							c[(int)pos_ini.x][(int)pos_ini.y].setPieza(new NoPieza(color::NO_DEFINIDO, tipo::VACIA, pos_ini));
 						}
 						else if (c[i][j].getPieza()->getTipo() == 'A') {
-							
+							if (c[(int)pos_fin.x][(int)pos_fin.y].getPieza()->getCol() == color::BLANCA) {
+								std::cout << "MOVIMIENTO NO POSIBLE, VUELVA A SELECCIONAR EL MOVIMIENTO" << endl;
+							}
+							else
 							c[(int)pos_fin.x][(int)pos_fin.y].setPieza(new Alfil(color::BLANCA, tipo::ALFIL, pos_fin));
 							c[(int)pos_ini.x][(int)pos_ini.y].setPieza(new NoPieza(color::NO_DEFINIDO, tipo::VACIA, pos_ini));
 						}
 						else if (c[i][j].getPieza()->getTipo() == 'K') {
+							if (c[(int)pos_fin.x][(int)pos_fin.y].getPieza()->getCol() == color::BLANCA) {
+								std::cout << "MOVIMIENTO NO POSIBLE, VUELVA A SELECCIONAR EL MOVIMIENTO" << endl;
+							}
+							else
 							c[(int)pos_fin.x][(int)pos_fin.y].setPieza(new Rey(color::BLANCA, tipo::REY, pos_fin));
 							c[(int)pos_ini.x][(int)pos_ini.y].setPieza(new NoPieza(color::NO_DEFINIDO, tipo::VACIA, pos_ini));
 						}
 						else if (c[i][j].getPieza()->getTipo() == 'Q') {
+							if (c[(int)pos_fin.x][(int)pos_fin.y].getPieza()->getCol() == color::BLANCA) {
+								std::cout << "MOVIMIENTO NO POSIBLE, VUELVA A SELECCIONAR EL MOVIMIENTO" << endl;
+							}
+							else
 							c[(int)pos_fin.x][(int)pos_fin.y].setPieza(new Reina(color::BLANCA, tipo::REINA, pos_fin));
 							c[(int)pos_ini.x][(int)pos_ini.y].setPieza(new NoPieza(color::NO_DEFINIDO, tipo::VACIA, pos_ini));
 						}
 						else if (c[i][j].getPieza()->getTipo() == 'P') {
+							if (c[(int)pos_fin.x][(int)pos_fin.y].getPieza()->getCol() == color::BLANCA) {
+								std::cout << "MOVIMIENTO NO POSIBLE, VUELVA A SELECCIONAR EL MOVIMIENTO" << endl;
+							}
+							else
 							c[(int)pos_fin.x][(int)pos_fin.y].setPieza(new Peon(color::BLANCA, tipo::PEON, pos_fin));
 							c[(int)pos_ini.x][(int)pos_ini.y].setPieza(new NoPieza(color::NO_DEFINIDO, tipo::VACIA, pos_ini));
 						}
@@ -379,26 +398,50 @@ void Tablero::muevePieza(Vector2D pos_ini, Vector2D pos_fin, color col) // Funci
 					//Movimiento NEGRAS
 					if (c[i][j].getPieza()->getCol() == color::NEGRA) {
 						if (c[i][j].getPieza()->getTipo() == 'T') {
+							if (c[(int)pos_fin.x][(int)pos_fin.y].getPieza()->getCol() == color::NEGRA) {
+								std::cout << "MOVIMIENTO NO POSIBLE, VUELVA A SELECCIONAR EL MOVIMIENTO" << endl;
+							}
+							else
 							c[(int)pos_fin.x][(int)pos_fin.y].setPieza(new Torre(color::NEGRA, tipo::TORRE, pos_fin));
 							c[(int)pos_ini.x][(int)pos_ini.y].setPieza(new NoPieza(color::NO_DEFINIDO, tipo::VACIA, pos_ini));
 						}
 						else if (c[i][j].getPieza()->getTipo() == 'C') {
+							if (c[(int)pos_fin.x][(int)pos_fin.y].getPieza()->getCol() == color::NEGRA) {
+								std::cout << "MOVIMIENTO NO POSIBLE, VUELVA A SELECCIONAR EL MOVIMIENTO" << endl;
+							}
+							else
 							c[(int)pos_fin.x][(int)pos_fin.y].setPieza(new Caballo(color::NEGRA, tipo::CABALLO, pos_fin));
 							c[(int)pos_ini.x][(int)pos_ini.y].setPieza(new NoPieza(color::NO_DEFINIDO, tipo::VACIA, pos_ini));
 						}
 						else if (c[i][j].getPieza()->getTipo() == 'A') {
+							if (c[(int)pos_fin.x][(int)pos_fin.y].getPieza()->getCol() == color::NEGRA) {
+								std::cout << "MOVIMIENTO NO POSIBLE, VUELVA A SELECCIONAR EL MOVIMIENTO" << endl;
+							}
+							else
 							c[(int)pos_fin.x][(int)pos_fin.y].setPieza(new Alfil(color::NEGRA, tipo::ALFIL, pos_fin));
 							c[(int)pos_ini.x][(int)pos_ini.y].setPieza(new NoPieza(color::NO_DEFINIDO, tipo::VACIA, pos_ini));
 						}
 						else if (c[i][j].getPieza()->getTipo() == 'K') {
+							if (c[(int)pos_fin.x][(int)pos_fin.y].getPieza()->getCol() == color::NEGRA) {
+								std::cout << "MOVIMIENTO NO POSIBLE, VUELVA A SELECCIONAR EL MOVIMIENTO" << endl;
+							}
+							else
 							c[(int)pos_fin.x][(int)pos_fin.y].setPieza(new Rey(color::NEGRA, tipo::REY, pos_fin));
 							c[(int)pos_ini.x][(int)pos_ini.y].setPieza(new NoPieza(color::NO_DEFINIDO, tipo::VACIA, pos_ini));
 						}
 						else if (c[i][j].getPieza()->getTipo() == 'Q') {
+							if (c[(int)pos_fin.x][(int)pos_fin.y].getPieza()->getCol() == color::NEGRA) {
+								std::cout << "MOVIMIENTO NO POSIBLE, VUELVA A SELECCIONAR EL MOVIMIENTO" << endl;
+							}
+							else
 							c[(int)pos_fin.x][(int)pos_fin.y].setPieza(new Reina(color::NEGRA, tipo::REINA, pos_fin));
 							c[(int)pos_ini.x][(int)pos_ini.y].setPieza(new NoPieza(color::NO_DEFINIDO, tipo::VACIA, pos_ini));
 						}
 						else if (c[i][j].getPieza()->getTipo() == 'P') {
+							if (c[(int)pos_fin.x][(int)pos_fin.y].getPieza()->getCol() == color::NEGRA) {
+								std::cout << "MOVIMIENTO NO POSIBLE, VUELVA A SELECCIONAR EL MOVIMIENTO" << endl;
+							}
+							else
 							c[(int)pos_fin.x][(int)pos_fin.y].setPieza(new Peon(color::NEGRA, tipo::PEON, pos_fin));
 							c[(int)pos_ini.x][(int)pos_ini.y].setPieza(new NoPieza(color::NO_DEFINIDO, tipo::VACIA, pos_ini));
 						}
@@ -423,12 +466,6 @@ void Tablero::reset()
 
 
 }
-
-
-	
-
-
-
 
 
 Vector2D Tablero::obtenerPos(Vector2D v) {

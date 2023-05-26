@@ -6,6 +6,8 @@
 #include "Selector.h"
 #include "Casilla.h"
 #include"Torre.h"
+#define MAX_2 2
+#define NP 8
 
 class Mundo
 {
@@ -16,9 +18,9 @@ private:
 	float z_ojo;
 	// variables a utilizar para el uso del ratón
 	float mousex, mousey;
-	bool mouseleftdown; 
-	bool mouserightdown;
 	
+	friend class Tablero;
+	friend class Casilla;
 
 	//ListaPeonesB peonesB;
 	ListaCaballosN caballosN;
@@ -28,22 +30,42 @@ private:
 	// CaballoN caballoN;
 	Selector selector;
 	Casilla c;
-
+protected:
+	
 public:
+	/*POR COMO FUNCIONAN LAS FUNCIONES DE MOVIMIENTO*/
+	friend class Alfil;
+	friend class Torre;
+	friend class Reina;
+	
+	
+	int i = 0;
+	Vector2D casi; // se deben inicializar en el mundo.h;
+	Vector2D pos_fin;
+	Vector2D pos_ini;
 	virtual ~Mundo();
-	void teclaSeleccion(unsigned char key);
-	void teclaMueve(unsigned char key);
+	
+	
 	void inicializa();
 	
-	void mueve();
+	void mueve(color c);
 	void dibuja();
+	void dibujaSW();
 	void teclaEspecial(unsigned char key);
 	void guardaPos();
-
+	void reset();
 
 	bool inTablero(float  x, float y); // saber si se clica dentro del tablero o no 
+	bool checkTurno (color col);
+	bool checkRecorridos();
+	bool checkJaque();
+	bool checkMate();
+
+	bool estaEnJaque(Vector2D pos_ini, Vector2D pos_fin);
+	bool jaqueMate();
 
 
+	//boolclicCorrecto()
 
 	// USO DEL RATÓN EN LA PANTALLA 
 

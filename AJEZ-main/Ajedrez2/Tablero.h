@@ -3,7 +3,6 @@
 #include "Casilla.h"
 #include "Pieza.h"
 #include "NoPieza.h"
-#include "CaballoN.h"
 #include "Torre.h"
 #include "Alfil.h"
 #include "Peon.h"
@@ -14,8 +13,7 @@
 class Tablero {
 public:
 	bool inicializado;
-	/*float sqsize; //tamaño de casillas
-	float bdsize; //grosor del borde exterior*/
+	
 	Pieza* p;
 	Casilla c[8][8]; //Matriz de 8x8 que representa el tablero
 

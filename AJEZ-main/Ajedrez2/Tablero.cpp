@@ -458,6 +458,7 @@ void Tablero::muevePieza(Vector2D pos_ini, Vector2D pos_fin, color col) // Funci
 		}// cierra el for (j)
 
 	} // cierra el for (i)
+	ETSIDI::play("sonidos/mov.mp3");
 } // cierra la funcion mueve pieza
 
 void Tablero::reset()

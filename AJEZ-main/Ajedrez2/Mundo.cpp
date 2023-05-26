@@ -101,7 +101,7 @@ void Mundo::inicializa()
 	x_ojo = 4;
 	y_ojo = 4;
 	z_ojo =15;
-
+	ETSIDI::playMusica("sonidos/fondo.mp3", true);
 	//tablero inicial con todos sus componentes:  
 }
 

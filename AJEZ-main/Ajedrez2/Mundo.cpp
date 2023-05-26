@@ -29,7 +29,7 @@ void Mundo::dibuja()
 	ETSIDI::printxy("Ajedrez estrepitoso", -11, 17);
 	ETSIDI::setTextColor(1, 1, 1);
 	ETSIDI::setFont("fuentes/Bitwise.ttf", 12);
-	ETSIDI::printxy("EquipoZ - Informática Industrial ", 3.5, 17);
+	ETSIDI::printxy("EquipoZ - InformÃ¡tica Industrial ", 3.5, 17);
 
 
 	tablero.dibuja();
@@ -37,11 +37,7 @@ void Mundo::dibuja()
 	if (!tablero.estaInicializado()) {
 		tablero.init();
 	}
-	//peonesB.dibuja();
-	//caballosN.dibuja();
 
-	//caballoN.dibuja();
-	//peonB.dibuja();
 	//selector.dibuja();
 }
 
@@ -60,7 +56,7 @@ void Mundo::dibujaSW()
 	ETSIDI::printxy("Ajedrez estrepitoso", -11, 17);
 	ETSIDI::setTextColor(1, 1, 1);
 	ETSIDI::setFont("fuentes/Bitwise.ttf", 12);
-	ETSIDI::printxy("EquipoZ - Informática Industrial ", 3.5, 17);
+	ETSIDI::printxy("EquipoZ - InformÃ¡tica Industrial ", 3.5, 17);
 
 
 	tablero.dibujaSW();
@@ -73,14 +69,14 @@ void Mundo::dibujaSW()
 void Mundo::teclaEspecial(unsigned char key)
 {
 
-	//caballosN.mueve(key);
+	
 	switch (key)
 	{
 	case GLUT_KEY_LEFT:
-		//caballosN.mueve(key);
+		
 		break;
 	case GLUT_KEY_RIGHT:
-		//caballosN.mueve(key);
+		
 		break;
 
 	}
@@ -140,7 +136,7 @@ bool Mundo::checkTurno(color col) //funcion que chequea si el movimiento es corr
 																				// CHEKEAR SI : has clicado posicion inicial y final y si has clicado dentro del tablero. 
 	else return false;															//si has clicado dentro del tablero y si el turno de color es correcto.
 }																				// Si el movimiento de cada pieza realizado es correcto. 
-																				// Si el recorrido de las piezas que recorren esta vacío. 
+																				// Si el recorrido de las piezas que recorren esta vacÃ­o. 
 
 bool Mundo:: checkRecorridos() {
 	if (tablero.c[(int)pos_ini.x][(int)pos_ini.y].getPieza()->getTipo() == 'C' || tablero.c[(int)pos_ini.x][(int)pos_ini.y].getPieza()->getTipo() == 'K' || tablero.c[(int)pos_ini.x][(int)pos_ini.y].getPieza()->getTipo() == 'P')return true;
@@ -210,7 +206,7 @@ bool Mundo::estaEnJaque(Vector2D pos_ini, Vector2D pos_fin)
 					// Verificar si la pieza enemiga puede atacar al rey
 				if (tablero.c[(int)pos_i.x][(int)pos_i.y].getPieza()->movimiento(pos_i, posReyN)) {
 					std::cout << "el rey Negro esta en jaque" << endl;
-					return true; // El rey está en jaque
+					return true; // El rey estÃ¡ en jaque
 				}
 
 			}
@@ -219,7 +215,7 @@ bool Mundo::estaEnJaque(Vector2D pos_ini, Vector2D pos_fin)
 				if (tablero.c[(int)pos_i.x][(int)pos_i.y].getPieza()->movimiento(pos_i, posReyB))
 				{
 					std::cout << "el rey BLANCO esta en jaque" << endl;
-					return true; // El rey está en jaque
+					return true; // El rey estÃ¡ en jaque
 				}
 			}
 		}
@@ -233,7 +229,7 @@ bool Mundo::estaEnJaque(Vector2D pos_ini, Vector2D pos_fin)
 
 
 
-	}	return false; // El rey no está en jaque
+	}	return false; // El rey no estÃ¡ en jaque
 }
 
 bool Mundo::jaqueMate() {
@@ -281,7 +277,7 @@ void Mundo::mouseFunc(int button, int state, int x, int y)
 		// si i !=0 selecccionamos la siguente casilla donde moveremos la pieza. 
 
 		if (i == 0) {
-			pos_ini = casi; // SE PODRÍA HACER UNNA FUNCION PARA DETECTAR SI LA POSICION INICIAL QUE CLICAS HAY UNA PIEZA O NO. 
+			pos_ini = casi; // SE PODRÃA HACER UNNA FUNCION PARA DETECTAR SI LA POSICION INICIAL QUE CLICAS HAY UNA PIEZA O NO. 
 			i++;
 		}
 		else { pos_fin = casi; i = 0; }
@@ -326,7 +322,7 @@ Vector2D Mundo::getMouseCas(int x, int y) // funcion para saber que casilla es l
 	window.y = glutGet(GLUT_WINDOW_HEIGHT);
 	float minx = window.x * 180 / 800; // Regla de 3 para sacar la esquina superior del tablero en pixeles usando los datos de la pantalla 800 x 600 
 	float miny = window.y * 80 / 600; // Idem pero con la y 
-	// para poder variar el ancho de la pantalla realizamos una modificación para cada ventana. 
+	// para poder variar el ancho de la pantalla realizamos una modificaciÃ³n para cada ventana. 
 	 cas.x = (window.x - minx - minx) / 8; 
 	 cas.y = (window.y - miny - miny) / 8;
 
@@ -335,7 +331,7 @@ Vector2D Mundo::getMouseCas(int x, int y) // funcion para saber que casilla es l
 	
 	 
 	v.x = (x - minx)/cas.x;
-	v.y = (y - miny) /cas.y; // Si lo dejamos asi la casilla (0,0) Será la suerior izquierda 
+	v.y = (y - miny) /cas.y; // Si lo dejamos asi la casilla (0,0) SerÃ¡ la suerior izquierda 
 
 	// Ahora recolocamos la casilla inferior izquierda a (0,0) 
 	v.y -= 8;

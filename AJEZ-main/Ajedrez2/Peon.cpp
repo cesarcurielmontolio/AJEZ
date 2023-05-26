@@ -1,85 +1,164 @@
+#include "Peon.h"
+
 #include"Peon.h"
 void Peon::dibujar() {
 
+	if (Pieza::colour == 0) {
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/peonblanco.png").id);
+		glDisable(GL_LIGHTING);
+
+	}
+	else if (Pieza::colour == 1) {
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/peonnegro.png").id);
+		glDisable(GL_LIGHTING);
+
+	}
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glBegin(GL_POLYGON);
+	glColor3f(1,1,1);
+	glTexCoord2d(0, 1); glVertex3f(posicion.x, posicion.y + 1, 0.1);
+	glTexCoord2d(1, 1); glVertex3f(posicion.x + 1, posicion.y + 1, 0.1);
+	glTexCoord2d(1, 0); glVertex3f(posicion.x + 1, posicion.y, 0.1);
+	glTexCoord2d(0, 0); glVertex3f(posicion.x, posicion.y, 0.1);
+
+
+	glEnd();
+	glDisable(GL_BLEND);
+	glEnable(GL_LIGHTING);
+	glDisable(GL_TEXTURE_2D);
+
+
+
+
+
 }
-bool Peon::movimiento(Vector2D pos_ini, Vector2D pos_fin, color c_destino) {
+void Peon::dibujarSW()
+{
+	if (Pieza::colour == 0) {
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenesSW/peonblanco.png").id);
+		glDisable(GL_LIGHTING);
+
+	}
+	else if (Pieza::colour == 1) {
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenesSW/peonnegro.png").id);
+		glDisable(GL_LIGHTING);
+
+	}
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glBegin(GL_POLYGON);
+	glColor3f(1, 1, 1);
+	glTexCoord2d(0, 1); glVertex3f(posicion.x, posicion.y + 1, 0.1);
+	glTexCoord2d(1, 1); glVertex3f(posicion.x + 1, posicion.y + 1, 0.1);
+	glTexCoord2d(1, 0); glVertex3f(posicion.x + 1, posicion.y, 0.1);
+	glTexCoord2d(0, 0); glVertex3f(posicion.x, posicion.y, 0.1);
+
+
+
+	glEnd();
+	glDisable(GL_BLEND);
+	glEnable(GL_LIGHTING);
+	glDisable(GL_TEXTURE_2D);
+}
+bool Peon::movimiento(Vector2D pos_ini, Vector2D pos_fin) {
+	
 	//Movimiento piezas blancas (igual para las negras)
 	if (colour == color::BLANCA) {
-		if (c_destino == color::NO_DEFINIDO) { //No tenemos ninguna pieza delante
-			if ((pos_fin.x - pos_ini.x) == 0 && (pos_fin.y - pos_ini.y) == 1) { //Movimiento para avanzar normal hacia delante
+		if (pos_ini.y == 1) { //Primer movimiento
+			if ((pos_fin.x - pos_ini.x) == 0 && ((pos_fin.y - pos_ini.y) == 1 || (pos_fin.y - pos_ini.y) == 2)) {
 				return true;
 			}
-			else if (pos_ini.y == 1) { //Movimiento inicial (opción de mover 1 o 2 casillas). Peones situados en la segunda casilla del tablero (pos 1)
-				if ((pos_fin.x - pos_ini.x) == 0 && ((pos_fin.y - pos_ini.y) == 1 || (pos_fin.y - pos_ini.y) == 2)) {
-					return true;
-				}
+			else {
+				return false;
 			}
-			else return false;
 		}
-		else if (c_destino == color::NEGRA) { //Movimiento para comer una pieza (dcha o izq, utilizando la función absoluto)
-			if ((abs(pos_fin.x - pos_ini.x) == 1) && (pos_fin.y - pos_ini.y) == 1) {
+		else if ((pos_fin.x - pos_ini.x) == 0 && (pos_fin.y - pos_ini.y) == 1) { //Movimiento para avanzar normal hacia delante
 				return true;
-			}
-			else return false;
 		}
+		else 
+			return false;
+
 	}
 	//Idem Negras
 
 	else if (colour == color::NEGRA) {
-		if (c_destino == color::NO_DEFINIDO) { //No tenemos ninguna pieza delante
-			if ((pos_fin.x - pos_ini.x) == 0 && (pos_fin.y - pos_ini.y) == 1) { //Movimiento para avanzar normal hacia delante
+		if (pos_ini.y == 6) {
+			if ((pos_fin.x - pos_ini.x) == 0 && ((pos_fin.y - pos_ini.y) == -1 || (pos_fin.y - pos_ini.y) == -2)) {
 				return true;
 			}
-			else if (pos_ini.y == 1) { //Movimiento inicial (opción de mover 1 o 2 casillas). Peones situados en la segunda casilla del tablero (pos 1)
-				if ((pos_fin.x - pos_ini.x) == 0 && ((pos_fin.y - pos_ini.y) == 1 || (pos_fin.y - pos_ini.y) == 2)) {
-					return true;
-				}
+			else {
+				return false;
 			}
-			else return false;
 		}
-		else if (c_destino == color::NEGRA) { //Movimiento para comer una pieza (dcha o izq, utilizando la función absoluto)
-			if ((abs(pos_fin.x - pos_ini.x) == 1) && (pos_fin.y - pos_ini.y) == 1) {
-				return true;
-			}
-			else return false;
+		else if ((pos_fin.x - pos_ini.x) == 0 && (pos_fin.y - pos_ini.y) == -1) { //Movimiento para avanzar normal hacia delante
+			return true;
+		}
+		else 
+			return false;
 
-		}
 	}
 
-	
+
 }
-Movimiento Peon::getMov(Vector2D pos_ini, Vector2D pos_fin) {
-	
-	Movimiento mov;
-	Vector2D desp(0, 0); //Inicializamos el desplazamiento a 0 en ambos sentidos
-	Vector2D origen = pos_ini; //Guardamos en origen la posición inicial
 
-	if (pos_fin.x != pos_ini.x) { //Mov eje x
-		if (pos_fin.x > pos_ini.x) {
-			desp.x = 1; //Desplazamiento positivo en el eje x de la matriz
-		}
-		else {
-			desp.x = -1;
-		}
-	}
-	else if (pos_fin.y != pos_ini.y) { //Mov eje y
-		if (pos_fin.y > pos_ini.y) {
-			desp.y = 1; //Desplazamiento positivo en el eje y de la matriz
-		}
-		else {
-			desp.y = -1;
-		}
-	}
-	while (origen != pos_fin) { //Hay que hacer la sobrecarga del operador 
-		
-		if (pos_fin.y != origen.y) {
-			origen.y += desp.y; //Desplazamiento normal. Incrementa coord y
+bool Peon::movimiento2(Vector2D pos_ini, Vector2D pos_fin, color c) {
 
-			if (pos_fin.x != origen.x) { //Come pieza. Se incrementan ambas coord.
-				origen.x += desp.x;
+	//Movimiento piezas blancas (igual para las negras)
+	if (colour == color::BLANCA) {
+		// if (abs(pos_fin.x - pos_ini.x) == 1 && (pos_fin.y - pos_ini.y) == 1) return true;
+		if (pos_ini.y == 1) { //Primer movimiento
+			if ((pos_fin.x - pos_ini.x) == 0 && ((pos_fin.y - pos_ini.y) == 1 || (pos_fin.y - pos_ini.y) == 2)) {
+				return true;
 			}
 		}
-		mov.insertarMov(origen);
+		else if ((pos_fin.x - pos_ini.x) == 0 && (pos_fin.y - pos_ini.y) == 1) { //Movimiento para avanzar normal hacia delante
+			return true;
+		}
+		else if (c == NEGRA && abs((pos_fin.x - pos_ini.x)) == 1 && (pos_fin.y - pos_ini.y) == 1) {  //Movimiento para comer, limitado en la clase interacción cuando no detecta una pieza que comer
+			return true;
+		}
+		else
+			return false;
+
 	}
-	return mov;
+	//Idem Negras
+
+	else if (colour == color::NEGRA) {
+		// if (abs(pos_fin.x - pos_ini.x) == 1 && (pos_fin.y - pos_ini.y) == 1) return true;
+		if (pos_ini.y == 6) { // primer movimiento negras
+			if ((pos_fin.x - pos_ini.x) == 0 && ((pos_fin.y - pos_ini.y) == -1 || (pos_fin.y - pos_ini.y) == -2)) {
+				return true;
+			}
+
+		}
+		else if ((pos_fin.x - pos_ini.x) == 0 && (pos_fin.y - pos_ini.y) == -1) //Movimiento para avanzar normal hacia delante NEGRAS
+			return true;
+
+		else if (c == BLANCA && abs((pos_fin.x - pos_ini.x)) == 1 && (pos_fin.y - pos_ini.y) == -1) { // COMER PIEZA BLANCA
+			return true;
+		}else return false;
+		
+
+	}
+}
+
+color Peon::getCol() const{
+	if (colour == color::BLANCA) {
+		return color::BLANCA;
+	}
+	else if (colour == color::NEGRA) {
+		return color::NEGRA;
+	}
+
+}
+char Peon::getTipo() {
+	return 'P';
+
 }
